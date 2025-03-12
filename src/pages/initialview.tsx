@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useFormStore } from "@/store/store";
-import LoginSingup from "@/components/loginSignup";
+import { LoginSingup } from "@/components/loginSignup";
 
 export default function InitialView() {
   const {type, changeTypeOfForm} = useFormStore();

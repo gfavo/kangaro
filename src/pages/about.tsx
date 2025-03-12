@@ -1,5 +1,5 @@
 import { Button } from "@/components/button";
-import Header from "@/components/header";
+import { Header } from "@/components/header";
 import { useCounter } from "@/store/store";
 
 export default function About() {

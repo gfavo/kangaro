@@ -1,4 +1,4 @@
-export default function Header(props: HeaderProps) {
+export const Header = (props: HeaderProps) => {
   return (
     <>
       <div className="text-3xl font-bold underline">
