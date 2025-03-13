@@ -1,3 +1,5 @@
+"use client";
+
 import { Colors } from "@/models/colors";
 import { UserFormData } from "@/models/userFormData";
 import { useFormStore, useLoginStore } from "@/store/store";
@@ -5,20 +7,19 @@ import { useState, useRef, useEffect } from "react";
 import { LoginMessage } from "./loginMessage";
 import { Spinner } from "./spinner";
 import { useRouter } from "next/router";
+import { useAuth } from "@/context/authContext";
 
 export const Login = () => {
-  const { type, changeTypeOfForm } = useFormStore();
+  const { changeTypeOfForm } = useFormStore();
   const [state, setState] = useState<{ success?: string; error?: string }>({});
   const [loadingState, setLoadingState] = useState(false);
-  const { setLoggedIn } = useLoginStore();
   const router = useRouter();
 
-  const [emailValid, setEmailValid] = useState(true);
+  const [emailValid] = useState(true);
 
   const submitRef = useRef(null);
 
   const logInSession = () => {
-    setLoggedIn();
     router.push('/dashboard');
   };
 

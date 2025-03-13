@@ -1,12 +1,11 @@
 import { createContext, useState, useContext, useEffect, Dispatch, SetStateAction } from "react";
-// Define the expected shape of the context
+
 interface AuthContextType {
-    user: any; // Change 'any' to a specific type if you know the user structure
+    user: any; 
     setUser: Dispatch<SetStateAction<any>>;
     checkSession: () => Promise<void>;
   }
   
-  // Create context with default value as 'null' (safer approach)
   const AuthContext = createContext<AuthContextType>({
     user: null,
     setUser: () => {},
@@ -23,7 +22,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     });
 
     const data = await response.json()
-    console.log(data);
     setUser(data.user);
 
   };

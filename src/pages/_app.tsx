@@ -1,3 +1,5 @@
+'use client';
+
 import type { AppProps } from "next/app";
 import { AuthProvider } from "../context/authContext";
 import "../styles/global.css";
