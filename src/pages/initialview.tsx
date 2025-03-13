@@ -1,12 +1,11 @@
-'use client';
+"use client";
 
-import Image from "next/image";
 import { useFormStore } from "@/store/store";
 import { Signup } from "@/components/signup";
 import { Login } from "@/components/login";
 
 export default function InitialView() {
-  const {type, changeTypeOfForm} = useFormStore();
+  const { type } = useFormStore();
   return (
     <>
       <div className="flex h-screen w-screen">
@@ -19,7 +18,7 @@ export default function InitialView() {
                 Log-in or create account
               </span>
             </div>
-            {type == 'login' ? <Login /> : <Signup />}
+            {type == "login" ? <Login /> : <Signup />}
           </div>
         </div>
         <div className="flex flex-col w-1/2 h-screen relative shadow-lg shadow-gray-500">
