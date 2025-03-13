@@ -27,7 +27,7 @@ export const Signup = () => {
         password: formData.get("password") as string,
       };
 
-      const response = await fetch("http://localhost:5000/api/user", {
+      const response = await fetch("http://localhost:5000/api/user/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(reqData),
@@ -70,7 +70,7 @@ export const Signup = () => {
           <div className="mt-10">
           {!emailValid ? <p className="text-sm text-red-500">Email invalid!</p> : ''}
             <input
-              className={`bg-gray-200 rounded-sm w-70 h-9 p-1 text-center hover:bg-gray-200/85 focus:shadow-input duration-200 ${!emailValid ? "border-1 border-red-500" : "border-1 border-green-500"}`}
+              className={`bg-gray-200 rounded-sm w-70 h-9 p-1 text-center hover:bg-gray-200/85 focus:shadow-input duration-200 ${!emailValid ? "border-1 border-red-500" : ""}`}
               type="email"
               name="email"
               id=""

@@ -1,3 +1,5 @@
+'use client';
+
 import Image from "next/image";
 import { useFormStore } from "@/store/store";
 import { Signup } from "@/components/signup";
