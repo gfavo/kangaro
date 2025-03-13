@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useFormStore } from "@/store/store";
-import { LoginSingup } from "@/components/loginSignup";
+import { Signup } from "@/components/signup";
+import { Login } from "@/components/login";
 
 export default function InitialView() {
   const {type, changeTypeOfForm} = useFormStore();
@@ -16,7 +17,7 @@ export default function InitialView() {
                 Log-in or create account
               </span>
             </div>
-           <LoginSingup />
+            {type == 'login' ? <Login /> : <Signup />}
           </div>
         </div>
         <div className="flex flex-col w-1/2 h-screen relative shadow-lg shadow-gray-500">

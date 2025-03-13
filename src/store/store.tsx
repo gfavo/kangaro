@@ -1,4 +1,4 @@
-import { FormType } from '@/types/form';
+import { FormType } from '@/models/form';
 import { create } from 'zustand';
 
 type CountStore = {

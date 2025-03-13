@@ -1,5 +1,5 @@
 export interface UserFormData {
     name: string;
-    username: string;
+    email: string;
     password: string;
 }
