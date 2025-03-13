@@ -13,6 +13,7 @@ export default function Dashboard() {
     }, [router]);
     return null;
   } else {
+    return <p>Dashboard</p>;
   }
-  return <p>Dashboard</p>;
+
 }

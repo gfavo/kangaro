@@ -37,6 +37,7 @@ export const Login = () => {
       const response = await fetch("http://localhost:5000/api/user/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify(reqData),
       });
 
@@ -47,7 +48,7 @@ export const Login = () => {
       }
 
       console.log(data);
-      setState({ success: data as string });
+      setState({ success: data.message as string });
       setLoadingState(false);
       submitRef.current && (submitRef.current as HTMLInputElement).blur();
       logInSession();
