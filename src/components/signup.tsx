@@ -3,7 +3,7 @@ import { Ref, useRef, useState } from "react";
 import { UserFormData } from "@/models/userFormData";
 import { LoginMessage } from "./loginMessage";
 import { Colors } from "@/models/colors";
-import * as EmailValidator from 'email-validator';
+import * as EmailValidator from "email-validator";
 import { Spinner } from "./spinner";
 
 export const Signup = () => {
@@ -25,6 +25,8 @@ export const Signup = () => {
         name: formData.get("name") as string,
         email: formData.get("email") as string,
         password: formData.get("password") as string,
+        organizationName: formData.get("org") as string,
+        role: "master"
       };
 
       const response = await fetch("http://localhost:5000/api/user/signup", {
@@ -36,6 +38,9 @@ export const Signup = () => {
       const data = await response.json();
 
       if (!response.ok) {
+        if((data as string) == "duplicate key value violates unique constraint \"organizations_name_key\""){
+          throw new Error("Organization already exists!");
+        }
         throw new Error(data as string);
       }
 
@@ -56,80 +61,108 @@ export const Signup = () => {
 
   const validateField = (event: React.FormEvent<HTMLInputElement>) => {
     const currentField = event.currentTarget.name;
-    if(currentField == 'email'){
-      console.log(event.currentTarget.value)
-     setEmailValid(EmailValidator.validate(event.currentTarget.value)); 
-     console.log(' - ' + emailValid);
+    if (currentField == "email") {
+      console.log(event.currentTarget.value);
+      setEmailValid(EmailValidator.validate(event.currentTarget.value));
+      console.log(" - " + emailValid);
     }
   };
 
-    return (
-      <>
-        {" "}
-        <form onSubmit={handleSignup} className="text-center">
-          <div className="mt-10">
-          {!emailValid ? <p className="text-sm text-red-500">Email invalid!</p> : ''}
-            <input
-              className={`bg-gray-200 rounded-sm w-70 h-9 p-1 text-center hover:bg-gray-200/85 focus:shadow-input duration-200 ${!emailValid ? "border-1 border-red-500" : ""}`}
-              type="email"
-              name="email"
-              id=""
-              placeholder="email"
-              onChange={(event) => {
-                validateField(event);
-              }}
-              required
-            />
-
-          </div>
-          <div className="mt-2">
-            <input
-              className="bg-gray-200 rounded-sm w-70 h-9 p-1 text-center hover:bg-gray-200/85 focus:shadow-input duration-200"
-              type="text"
-              name="name"
-              id=""
-              placeholder="full name"
-              required
-            />
-          </div>
-          <div className="mt-2 mb-3">
-            <input
-              className="bg-gray-200 rounded-sm w-70 h-9 p-1 text-center hover:bg-gray-200/85 focus:shadow-input duration-200"
-              type="password"
-              name="password"
-              id=""
-              placeholder="password"
-              required
-            />
-          </div>
-          <span
-            className="text-primary underline mt-3 cursor-pointer text-center"
-            onClick={changeTypeOfForm}
+  return (
+    <>
+      {" "}
+      <form onSubmit={handleSignup} className="text-center">
+        <div className="mt-10">
+          {!emailValid ? (
+            <p className="text-sm text-red-500">Email invalid!</p>
+          ) : (
+            ""
+          )}
+          <input
+            className={`bg-gray-200 rounded-sm w-70 h-9 p-1 text-center hover:bg-gray-200/85 focus:shadow-input duration-200 ${
+              !emailValid ? "border-1 border-red-500" : ""
+            }`}
+            type="email"
+            name="email"
+            id=""
+            placeholder="email"
+            onChange={(event) => {
+              validateField(event);
+            }}
+            required
+          />
+        </div>
+        <div className="mt-2">
+          <input
+            className="bg-gray-200 rounded-sm w-70 h-9 p-1 text-center hover:bg-gray-200/85 focus:shadow-input duration-200"
+            type="text"
+            name="org"
+            id="org"
+            placeholder="Organization name"
+            required
+          />
+        </div>
+        <div className="mt-2">
+          <select
+            className="bg-gray-200 rounded-sm w-70 h-9 p-1 text-center hover:bg-gray-200/85 focus:shadow-input duration-200"
+            name="type"
+            id=""
+            defaultValue="Organization type"
+            required
           >
-            Already have an account? Login!
-          </span>
-          <div className="mt-15">
-            <button
-              type="submit"
-              className={"w-70 h-10 bg-primary text-white font-bold font-barlowc cursor-pointer rounded-lg hover:scale-105 duration-200 justify-center items-center flex focus:bg-orange-200"}
-              ref={submitRef}
-            >
-           {loadingState ? <Spinner /> : ""}
-              Sign up!
-            </button>
-          </div>
-        </form>
-        {state.success ? (
-          <LoginMessage message={state.success} color={Colors.success} />
-        ) : (
-          ""
-        )}
-        {state.error ? (
-          <LoginMessage message={state.error} color={Colors.fail} />
-        ) : (
-          ""
-        )}
-      </>
-    );
-  }
-
+            <option value="" disabled selected>Organization Type</option>
+            <option value="languages">Languages School</option>
+          </select>
+        </div>
+        <div className="mt-2">
+          <input
+            className="bg-gray-200 rounded-sm w-70 h-9 p-1 text-center hover:bg-gray-200/85 focus:shadow-input duration-200"
+            type="text"
+            name="name"
+            id=""
+            placeholder="full name"
+            required
+          />
+        </div>
+        <div className="mt-2 mb-3">
+          <input
+            className="bg-gray-200 rounded-sm w-70 h-9 p-1 text-center hover:bg-gray-200/85 focus:shadow-input duration-200"
+            type="password"
+            name="password"
+            id=""
+            placeholder="password"
+            required
+          />
+        </div>
+        <span
+          className="text-primary underline mt-3 cursor-pointer text-center"
+          onClick={changeTypeOfForm}
+        >
+          Already have an account? Login!
+        </span>
+        <div className="mt-15">
+          <button
+            type="submit"
+            className={
+              "w-70 h-10 bg-primary text-white font-bold font-barlowc cursor-pointer rounded-lg hover:scale-105 duration-200 justify-center items-center flex focus:bg-orange-200"
+            }
+            ref={submitRef}
+          >
+            {loadingState ? <Spinner /> : ""}
+            Sign up!
+          </button>
+        </div>
+      </form>
+      {state.success ? (
+        <LoginMessage message={state.success} color={Colors.success} />
+      ) : (
+        ""
+      )}
+      {state.error ? (
+        <LoginMessage message={state.error} color={Colors.fail} />
+      ) : (
+        ""
+      )}
+    </>
+  );
+};

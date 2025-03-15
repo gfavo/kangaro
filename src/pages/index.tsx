@@ -8,22 +8,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 export default function InitialView() {
-  const { user, checkSession } = useAuth();
-  const [loading, setLoading] = useState(true); 
+  const { user, loading } = useAuth();
   const router = useRouter();
-  useEffect(() => {
-    const pullSession = async () => {
-      await checkSession();
-      setLoading(false);
-    };
-    pullSession();
-  }, []);
 
   useEffect(() => {
-    if (!loading && user != null) {
+    if (user != null) {
       router.push("/dashboard");
     }
-  }, [user, loading]);
+  }, [user]);
 
   const { type } = useFormStore();
   return (

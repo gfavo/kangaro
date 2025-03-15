@@ -20,7 +20,7 @@ export const Login = () => {
   const submitRef = useRef(null);
 
   const logInSession = () => {
-    router.push('/dashboard');
+    router.replace('/dashboard');
   };
 
   const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
