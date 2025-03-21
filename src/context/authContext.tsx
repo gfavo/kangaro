@@ -1,3 +1,4 @@
+import { User } from "@/models/user";
 import { useRouter } from "next/router";
 import {
   createContext,
@@ -9,13 +10,13 @@ import {
 } from "react";
 
 interface AuthContextType {
-  user: any;
+  user: any | User;
   loading: boolean;
   checkSession: () => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
-  user: null,
+  user: {},
   loading: true,
   checkSession: () => {}
 });
