@@ -3,10 +3,11 @@ import { TriangleSvg } from "@/svg/triangle";
 const Menu = () => {
   return (
     <div>
-      <div className="w-50 h-50 absolute top-19 ml-30">
-        <TriangleSvg />
+      <div className="w-30 h-20 bg-orange-50 rounded-2xl flex flex-col justify-center items-center font-poppins">
+        <div className="text-brown-800 cursor-pointer hover:text-brown-500">Perfil</div>
+        <div className="text-brown-800 cursor-default">-</div>
+        <div className="text-brown-800 cursor-pointer hover:text-brown-500">Logout</div>
       </div>
-      <div className="w-70 h-50 bg-orange-50 mt-70 rounded-2xl"></div>
     </div>
   );
 };
