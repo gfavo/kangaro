@@ -6,7 +6,7 @@ export default function Document() {
   return (
     <Html>
       <Head />
-      <body className='bg-white font-barlow antialiased'>
+      <body className='bg-gray-500/6 font-barlow antialiased'>
         <Main />
         <NextScript />
       </body>

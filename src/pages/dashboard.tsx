@@ -14,22 +14,11 @@ export default function Dashboard() {
     checkSession();
   }, []);
 
-  const logout = async () => {
-    const response = await fetch("http://localhost:5000/api/session/logout", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    });
-
-    if(response.ok) {
-      router.replace('/');
-    }
-  };
 
   return (
-    <>
+    <div>
     <Header />
-      <button onClick={logout}>Logout</button> <p>Hello! {user?.email}</p>;
-    </>
+    <div className="flexbox h-full w-full bg-gray-500/6"></div>
+    </div>
   );
 }
