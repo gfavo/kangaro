@@ -1,8 +1,8 @@
 "use client";
 
 import { useFormStore } from "@/store/store";
-import { Signup } from "@/components/signup";
-import { Login } from "@/components/login";
+import { Signup } from "@/components/Signup";
+import { Login } from "@/components/Login";
 import { useAuth } from "@/context/authContext";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
