@@ -12,7 +12,7 @@ const openModal = () =>{
 }
   return (
     <>
-      <div className="w-screen h-18 border-b-2 border-gray-500/20 flex flex-row justify-between items-center bg-gray-500/6 pr-10 pl-10">
+      <div className="w-screen h-18 border-b-2 border-gray-500/20 bg-gray-100/20 flex flex-row justify-between items-center pr-10 pl-10">
         <img src="logo-no-text.png" className="w-15 h-15" alt="" />{" "}
         <h1 className='text-3xl text-primary capitalize font-poppins'><b>{(user as User)?.organizationName.toUpperCase()}</b></h1>
         <div>
