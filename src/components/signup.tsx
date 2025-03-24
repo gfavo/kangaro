@@ -1,10 +1,10 @@
 import { useFormStore } from "@/store/store";
 import { Ref, useRef, useState } from "react";
 import { UserFormData } from "@/models/userFormData";
-import { LoginMessage } from "./loginMessage";
+import { LoginMessage } from "./LoginMessage";
 import { Colors } from "@/models/colors";
 import * as EmailValidator from "email-validator";
-import { Spinner } from "./spinner";
+import { Spinner } from "./Spinner";
 
 export const Signup = () => {
   const { type, changeTypeOfForm } = useFormStore();

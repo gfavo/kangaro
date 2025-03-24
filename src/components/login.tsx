@@ -4,8 +4,8 @@ import { Colors } from "@/models/colors";
 import { UserFormData } from "@/models/userFormData";
 import { useFormStore, useLoginStore } from "@/store/store";
 import { useState, useRef, useEffect } from "react";
-import { LoginMessage } from "./loginMessage";
-import { Spinner } from "./spinner";
+import { LoginMessage } from "./LoginMessage";
+import { Spinner } from "./Spinner";
 import { useRouter } from "next/router";
 import { useAuth } from "@/context/authContext";
 
