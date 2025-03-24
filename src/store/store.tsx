@@ -1,4 +1,5 @@
 import { FormType } from '@/models/form';
+import { DashTabs } from '@/models/selectedTabs';
 import { create } from 'zustand';
 
 type CountStore = {
@@ -16,6 +17,10 @@ type LoginStore = {
     setLoggedIn: () => void;
 }
 
+type DashTabsStore = {
+    selectedTab: DashTabs;
+    setSelectedDashTab: (tab: DashTabs) => void;
+}
 
 
 export const useCounter = create<CountStore>() ((set) => ({
@@ -31,6 +36,11 @@ export const useFormStore = create<FormStore>() ((set) => ({
 export const useLoginStore = create<LoginStore>() ((set) => ({
     loggedIn: false,
     setLoggedIn: () => set((state) => ({loggedIn: !state.loggedIn}))
+}));
+
+export const useDashTabStore = create<DashTabsStore>() ((set) => ({
+    selectedTab: "home",
+    setSelectedDashTab: (tabVal) => set((state) => ({selectedTab: tabVal}))
 }));
 
 

@@ -1,0 +1,1 @@
+export type DashTabs = "home" | "students" | "teachers" | "classes";
