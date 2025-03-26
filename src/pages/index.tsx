@@ -3,6 +3,7 @@
 import { useFormStore } from "@/store/store";
 import { Signup } from "@/components/Signup";
 import { Login } from "@/components/Login";
+import Verification from "@/components/Verification";
 import { useAuth } from "@/context/authContext";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -18,6 +19,18 @@ export default function InitialView() {
   }, [user]);
 
   const { type } = useFormStore();
+
+  const ComponentRouter = () => {
+    switch(type) {
+    case "login":
+      return <Login />;
+      break
+    case "signup":
+      return <Signup />
+    case "verification":
+      return <Verification />
+    }
+  }
   return (
     <>
       <div className="flex h-screen w-screen">
@@ -30,7 +43,7 @@ export default function InitialView() {
                 Log-in or create account
               </span>
             </div>
-            {type == "login" ? <Login /> : <Signup />}
+            <ComponentRouter/>
           </div>
         </div>
         <div className="flex flex-col w-1/2 h-screen relative shadow-lg shadow-gray-500">

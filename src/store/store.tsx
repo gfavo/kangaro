@@ -9,7 +9,7 @@ type CountStore = {
 
 type FormStore = {
     type: FormType;
-    changeTypeOfForm: () => void;
+    changeTypeOfForm: (formType: FormType) => void;
 }
 
 type LoginStore = {
@@ -30,7 +30,7 @@ export const useCounter = create<CountStore>() ((set) => ({
 
 export const useFormStore = create<FormStore>() ((set) => ({
     type: "login",
-    changeTypeOfForm: () => set((state) => ({type: state.type == 'login' ? 'signup' : 'login'}))
+    changeTypeOfForm: (formType) => set((state) => ({type: formType}))
 }));
 
 export const useLoginStore = create<LoginStore>() ((set) => ({

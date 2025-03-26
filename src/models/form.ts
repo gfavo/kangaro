@@ -1,1 +1,1 @@
-export type FormType = "login" | "signup";
+export type FormType = "login" | "signup" | "verification";

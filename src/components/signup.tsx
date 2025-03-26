@@ -48,6 +48,8 @@ export const Signup = () => {
       setState({ success: data as string });
       setLoadingState(false);
       submitRef.current && (submitRef.current as HTMLInputElement).blur();
+
+      changeTypeOfForm('verification');
       return {
         success: data.message as string,
       };
@@ -136,7 +138,7 @@ export const Signup = () => {
         </div>
         <span
           className="text-primary underline mt-3 cursor-pointer text-center"
-          onClick={changeTypeOfForm}
+          onClick={() => changeTypeOfForm('login')}
         >
           Already have an account? Login!
         </span>

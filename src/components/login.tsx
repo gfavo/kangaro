@@ -20,6 +20,7 @@ export const Login = () => {
   const submitRef = useRef(null);
 
   const logInSession = () => {
+    submitRef.current && (submitRef.current as HTMLInputElement).setAttribute('disabled', 'true');
     router.replace('/dashboard');
   };
 
@@ -97,7 +98,7 @@ export const Login = () => {
         </div>
         <span
           className="text-primary underline mt-3 cursor-pointer text-center"
-          onClick={changeTypeOfForm}
+          onClick={() => changeTypeOfForm('signup')}
         >
           Don't have an account yet, Sign-up!
         </span>
