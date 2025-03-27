@@ -7,8 +7,10 @@ import Verification from "@/components/Verification";
 import { useAuth } from "@/context/authContext";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { NextPage } from "next";
 
 export default function InitialView() {
+  
   const { user, loading } = useAuth();
   const router = useRouter();
 

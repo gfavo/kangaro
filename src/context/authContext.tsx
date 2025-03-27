@@ -28,6 +28,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 
   const checkSession = async () => {
+    if(router.pathname === '/verification/[verificationHash]') {
+      const response = await fetch("http://localhost:5000/api/checkVerification", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      
+    } else {
     try {
       const response = await fetch("http://localhost:5000/api/session", {
         method: "GET",
@@ -46,7 +56,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       router.replace(`/`);
     } 
     setIsLoading(false);
-  };
+  }
+}
   useEffect(() => {
     checkSession();
   }, []);
