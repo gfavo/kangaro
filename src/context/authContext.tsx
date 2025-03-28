@@ -13,12 +13,13 @@ interface AuthContextType {
   user: any | User;
   loading: boolean;
   checkSession: () => void;
+  setIsLoading?: Dispatch<SetStateAction<boolean>>;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: {},
   loading: true,
-  checkSession: () => {}
+  checkSession: () => {},
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -26,17 +27,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setIsLoading] = useState(true);
   const router = useRouter();
 
-
   const checkSession = async () => {
-    if(router.pathname === '/verification/[verificationHash]') {
-      const response = await fetch("http://localhost:5000/api/checkVerification", {
-        method: "GET",
-        credentials: "include",
-      });
-
-      const data = await response.json();
-
-      
+    if(router.pathname === '/verification/[verificationHash]') {      
+      setIsLoading(false);
     } else {
     try {
       const response = await fetch("http://localhost:5000/api/session", {
@@ -63,7 +56,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading, checkSession }}>
+    <AuthContext.Provider value={{ user, loading, checkSession, setIsLoading }}>
       {!loading && children}
     </AuthContext.Provider>
   );
