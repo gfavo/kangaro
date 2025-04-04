@@ -1,9 +1,10 @@
 import { useAuth } from "@/context/authContext";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Page() {
   const router = useRouter();
+  const [message, setMessage] = useState();
 
   console.log(router.query)
   const verifyUser = async () => {
@@ -12,17 +13,19 @@ export default function Page() {
       {
         method: "POST",
         credentials: "include",
-        body: JSON.stringify(router.query),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({hash: `${router.query.verificationHash}`})
       }
     );
 
     const data = await response.json();
+    setMessage(data);
   };
 
   useEffect(() => {
-    
-  }, []);
-  verifyUser();
+    verifyUser();
+  }, [router]);
+ 
 
-  return <div>{router.query.verificationHash}</div>;
+  return <div>{message}</div>;
 }
