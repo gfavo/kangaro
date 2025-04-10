@@ -1,26 +1,26 @@
-import { useDashTabStore } from "@/store/store"
+import { useDashTabStore } from "@/store/store";
 import Home from './Home';
 import Students from "./Students";
 import Teachers from "./Teachers";
 import Classes from "./Classes";
 
 export const DashboardRouter = () => {
-    const {selectedTab} = useDashTabStore();
+    const { selectedTab } = useDashTabStore();
 
-    switch (selectedTab) {
-        case 'home':
-            return <Home />
-            break;
-        case 'students':
-            return <Students />
-            break;
-        case 'teachers':
-            return <Teachers />
-            break;
-        case 'classes': 
-            return <Classes />
-            break;
-        default:
-            break;
-    }
-}
+    return (
+        <>
+            <div className={`tab-content ${selectedTab === 'home' ? 'visible' : 'hidden'}`}>
+                <Home />
+            </div>
+            <div className={`tab-content ${selectedTab === 'students' ? 'visible' : 'hidden'}`}>
+                <Students />
+            </div>
+            <div className={`tab-content ${selectedTab === 'teachers' ? 'visible' : 'hidden'}`}>
+                <Teachers />
+            </div>
+            <div className={`tab-content ${selectedTab === 'classes' ? 'visible' : 'hidden'}`}>
+                <Classes />
+            </div>
+        </>
+    );
+};

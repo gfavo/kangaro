@@ -20,9 +20,12 @@ export default function Dashboard() {
   return (
     <div className="flex flex-col w-screen h-screen">
       <Header />
-      <div className="flex-1 flex">
+      <div className="flex-1 flex ">
         <SideMenu />
-        <DashboardRouter />
+        <div className="flex w-full justify-center">
+          {" "}
+          <DashboardRouter />
+        </div>
       </div>
     </div>
   );

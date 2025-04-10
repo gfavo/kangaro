@@ -16,7 +16,6 @@ const Teachers = () => {
       setTeachers(v);
     }
 
-
   
   const columns: Column<User>[] = [
     { Header: "Name", accessor: "name" },
@@ -27,9 +26,9 @@ const Teachers = () => {
     return (
         <div className="flex flex-col items-center pt-10 h-full w-full">
           <h2 className="font-barlow text-4xl">
-           Teachers Tab!
+            Your Teachers
           </h2>
-          <div><DashboardTable<User> data={teachers} columns={columns} /></div>
+          <div><DashboardTable<User> data={teachers} columns={columns} callback={() => {}}/></div>
         </div>
       );
 }

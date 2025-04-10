@@ -8,9 +8,10 @@ type Column<T> = {
 type DashboardTableProps<T> = {
   data: T[];
   columns: Column<T>[];
+  callback: (row: T) => void;
 };
 
-export const DashboardTable = <T,>({ data, columns }: DashboardTableProps<T>) => {
+export const DashboardTable = <T,>({ data, columns, callback }: DashboardTableProps<T>) => {
   return (
     <div className="w-full overflow-x-auto px-4 py-6">
       <table className="min-w-full text-sm text-left text-gray-600 font-poppins bg-white/50 shadow-md rounded-2xl overflow-hidden">
@@ -28,7 +29,9 @@ export const DashboardTable = <T,>({ data, columns }: DashboardTableProps<T>) =>
             data.map((row, rowIndex) => (
               <tr
                 key={rowIndex}
-                className="hover:bg-gray-200/40 transition duration-150"
+                className="hover:bg-gray-200/40 transition duration-150 cursor-pointer"
+                onClick={() => callback(row)} 
+
               >
                 {columns.map((col) => (
                   <td
